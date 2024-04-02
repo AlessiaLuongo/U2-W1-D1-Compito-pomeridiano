@@ -1,9 +1,14 @@
 package alessia.U2W1D1;
 
 import alessia.U2W1D1.entities.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Configuration
@@ -82,7 +87,32 @@ public class BeansConfig {
     }
 
     @Bean
-    public Menu getMenu(Pizza pizza,Topping topping,  Drink drink){
-        return new Menu(pizza, topping, drink);
+    public List<Pizza> pizzas(Pizza pizza){
+       List<Pizza> pizzas = new ArrayList();
+       pizzas.add(getPizzaMargherita());
+       pizzas.add(getPizzaHawaii());
+       pizzas.add(getPizzaSalami());
+
+        return pizzas;
+    }
+
+    @Bean
+    public  List<Topping> toppings(Topping topping){
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getToppingCheese());
+        toppings.add(getToppingHam());
+        toppings.add(getToppingPinapple());
+        toppings.add(getToppingSalami());
+
+        return toppings;
+    }
+
+    @Bean
+    public  List<Drink> drinks(Drink drink){
+        List<Drink> drinks = new ArrayList<>();
+        drinks.add(getDrinkLemonade());
+        drinks.add(getDrinkWater());
+        drinks.add(getDrinkWine());
+        return drinks;
     }
 }

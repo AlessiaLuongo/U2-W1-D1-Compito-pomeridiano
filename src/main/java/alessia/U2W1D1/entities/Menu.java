@@ -1,21 +1,25 @@
 package alessia.U2W1D1.entities;
 
-public class Menu {
-    private final IMenu pizza;
-    private final IMenu topping;
-    private final IMenu drink;
 
-    public Menu (IMenu pizza, IMenu topping, IMenu drink){
-        this.pizza = pizza;
-        this.topping = topping;
-        this.drink = drink;
+import java.util.List;
+
+public class Menu {
+    private final List<Pizza> pizzas;
+    private final List<Topping> toppings;
+    private final List<Drink> drinks;
+
+    public Menu(List<Pizza> pizzas, List<Topping> toppings, List<Drink> drinks) {
+        this.pizzas = pizzas;
+        this.toppings = toppings;
+        this.drinks = drinks;
     }
 
+    @Override
     public String toString() {
         return "Menu{" +
-                "Pizza=" + pizza +
-                ", Topping=" + (topping != null ? topping : "No topping") +
-                ", Drink=" + drink +
+                "pizzas=" + pizzas +
+                ", toppings=" + toppings +
+                ", drinks=" + drinks +
                 '}';
     }
 }
