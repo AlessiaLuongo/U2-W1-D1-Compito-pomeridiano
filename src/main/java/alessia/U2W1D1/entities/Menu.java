@@ -1,8 +1,11 @@
 package alessia.U2W1D1.entities;
 
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class Menu {
     private final List<Pizza> pizzas;
     private final List<Topping> toppings;

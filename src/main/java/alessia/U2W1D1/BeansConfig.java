@@ -1,14 +1,15 @@
 package alessia.U2W1D1;
 
 import alessia.U2W1D1.entities.*;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
+
+@PropertySource("application.properties")
 
 
 @Configuration
@@ -103,6 +104,7 @@ public class BeansConfig {
         toppings.add(getToppingHam());
         toppings.add(getToppingPinapple());
         toppings.add(getToppingSalami());
+        toppings.add(getToppingOnions());
 
         return toppings;
     }
@@ -115,4 +117,34 @@ public class BeansConfig {
         drinks.add(getDrinkWine());
         return drinks;
     }
+
+    @Bean
+    public Tavolo tavolo1(){
+        return new Tavolo(4, false);
+    }
+    @Bean
+    public Tavolo tavolo2(){
+        return new Tavolo(2, true);
+    }
+    @Bean
+    public Tavolo tavolo3(){
+        return new Tavolo(6, true);
+    }
+    @Bean
+    public Tavolo tavolo4(){
+        return new Tavolo(4, false);
+    }
+
+    @Bean
+    public List<Tavolo> tavoli(){
+        List<Tavolo> tavoli = new ArrayList<>();
+        tavoli.add(tavolo1());
+        tavoli.add(tavolo2());
+        tavoli.add(tavolo3());
+        tavoli.add(tavolo4());
+        return tavoli;
+    }
+
+
+
 }
