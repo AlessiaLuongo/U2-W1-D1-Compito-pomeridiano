@@ -4,11 +4,13 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.springframework.stereotype.Component;
+
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Getter
 @Setter
@@ -22,22 +24,46 @@ public class Ordine {
     private double costoDellOrdine;
     private List<IMenu> ordinazione;
     private Tavolo tavolo;
+    private int calories;
 
     public Ordine() {
     }
 
-    public Ordine(StatoDellOrdine statoDellOrdine, int numeroDeiCoperti, int coperto, LocalDate oraDellOrdine, double costoDellOrdine, List<IMenu> ordinazione, Tavolo tavolo) {
+    public Ordine(StatoDellOrdine statoDellOrdine, int numeroDeiCoperti, int coperto, LocalDate oraDellOrdine, List<IMenu> ordinazione, Tavolo tavolo) {
         this.statoDellOrdine = statoDellOrdine;
         this.numeroDeiCoperti = numeroDeiCoperti;
         this.coperto = coperto;
         this.oraDellOrdine = oraDellOrdine;
-        this.costoDellOrdine = costoDellOrdine;
         this.ordinazione = ordinazione;
         this.tavolo = tavolo;
+        this.costoDellOrdine = costoOrdine();
+        this.calories = totaleCalorie(ordinazione);
+        this.id = generateRandomId();
     }
+
+
 
     public void aggiungiAllOrdinazione(IMenu IMenu) {
         this.ordinazione.add(IMenu);
+    }
+    private int generateRandomId() {
+        Random random = new Random();
+        return random.nextInt(20);
+    }
+
+    private double costoOrdine() {
+        double sommaTotale = 0.0;
+        for (IMenu menu : ordinazione) {
+            sommaTotale += menu.getPrice();
+        }
+        return sommaTotale;
+    }
+    private static int totaleCalorie(List<IMenu> ordinazione) {
+        int sommaCalorie = 0;
+        for (IMenu menu : ordinazione) {
+            sommaCalorie += menu.getCalories();
+        }
+        return sommaCalorie;
     }
 
     @Override
@@ -51,6 +77,7 @@ public class Ordine {
                 ", costoDellOrdine=" + costoDellOrdine +
                 ", ordinazione=" + ordinazione +
                 ", tavolo=" + tavolo +
+                ", calories=" + calories +
                 '}';
     }
 }

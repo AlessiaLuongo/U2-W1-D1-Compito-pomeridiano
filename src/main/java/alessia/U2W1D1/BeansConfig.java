@@ -1,6 +1,7 @@
 package alessia.U2W1D1;
 
 import alessia.U2W1D1.entities.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -120,31 +121,22 @@ public class BeansConfig {
     }
 
     @Bean
-    public Tavolo tavolo1(){
+    public Tavolo tavolo1(@Value("${surplus.coperto}")int coperto){
         return new Tavolo(4, false);
     }
     @Bean
-    public Tavolo tavolo2(){
+    public Tavolo tavolo2(@Value("${surplus.coperto}")int coperto){
         return new Tavolo(2, true);
     }
     @Bean
-    public Tavolo tavolo3(){
+    public Tavolo tavolo3(@Value("${surplus.coperto}")int coperto){
         return new Tavolo(6, true);
     }
     @Bean
-    public Tavolo tavolo4(){
+    public Tavolo tavolo4(@Value("${surplus.coperto}")int coperto){
         return new Tavolo(4, false);
     }
 
-    @Bean
-    public List<Tavolo> tavoli(){
-        List<Tavolo> tavoli = new ArrayList<>();
-        tavoli.add(tavolo1());
-        tavoli.add(tavolo2());
-        tavoli.add(tavolo3());
-        tavoli.add(tavolo4());
-        return tavoli;
-    }
 
 
 

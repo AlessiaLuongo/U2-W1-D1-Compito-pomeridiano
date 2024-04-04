@@ -24,12 +24,12 @@ public class Topping implements IMenu{
 
     @Override
     public int getCalories() {
-        return 0;
+        return calories;
     }
 
     @Override
     public double getPrice() {
-        return 0;
+        return price;
     }
 
     @Override
