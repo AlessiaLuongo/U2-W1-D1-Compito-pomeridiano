@@ -15,28 +15,28 @@ public class Tavolo {
     private int id;
     private int numeroMassimoCoperti;
 
-    private boolean statoDelTavolo;
+    private boolean libero;
 
     public Tavolo() {
     }
 
-    public Tavolo(int numeroMassimoCoperti, boolean statoDelTavolo) {
+    public Tavolo(int numeroMassimoCoperti, boolean libero) {
         this.id = generateRandomId();
         this.numeroMassimoCoperti = numeroMassimoCoperti;
-        this.statoDelTavolo = false;
+        this.libero = libero;
     }
-
 
     private int generateRandomId() {
         Random random = new Random();
         return random.nextInt(20);
     }
+
     @Override
     public String toString() {
         return "Tavolo{" +
                 "id=" + id +
                 ", numeroMassimoCoperti=" + numeroMassimoCoperti +
-                ", statoDelTavolo=" + statoDelTavolo +
+                ", stato del tavolo=" + (this.isLibero()? "occupato" : "libero") +
                 '}';
     }
 }

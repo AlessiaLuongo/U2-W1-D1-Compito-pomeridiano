@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 public class Ordine {
-    private Menu menu;
     @Setter(AccessLevel.NONE)
     private int id;
     private StatoDellOrdine statoDellOrdine;
@@ -20,34 +20,37 @@ public class Ordine {
     private int coperto;
     private LocalDate oraDellOrdine;
     private double costoDellOrdine;
+    private List<IMenu> ordinazione;
+    private Tavolo tavolo;
 
     public Ordine() {
     }
 
-
-    public Ordine(Menu menu, StatoDellOrdine statoDellOrdine, int numeroDeiCoperti, int coperto, LocalDate oraDellOrdine, double costoDellOrdine) {
-
-        this.menu = menu;
+    public Ordine(StatoDellOrdine statoDellOrdine, int numeroDeiCoperti, int coperto, LocalDate oraDellOrdine, double costoDellOrdine, List<IMenu> ordinazione, Tavolo tavolo) {
         this.statoDellOrdine = statoDellOrdine;
         this.numeroDeiCoperti = numeroDeiCoperti;
         this.coperto = coperto;
-        this.oraDellOrdine = LocalDate.now();
+        this.oraDellOrdine = oraDellOrdine;
         this.costoDellOrdine = costoDellOrdine;
-
-
+        this.ordinazione = ordinazione;
+        this.tavolo = tavolo;
     }
 
+    public void aggiungiAllOrdinazione(IMenu IMenu) {
+        this.ordinazione.add(IMenu);
+    }
 
     @Override
     public String toString() {
         return "Ordine{" +
-                "menu=" + menu +
-                ", id=" + id +
+                "id=" + id +
                 ", statoDellOrdine=" + statoDellOrdine +
                 ", numeroDeiCoperti=" + numeroDeiCoperti +
                 ", coperto=" + coperto +
                 ", oraDellOrdine=" + oraDellOrdine +
                 ", costoDellOrdine=" + costoDellOrdine +
+                ", ordinazione=" + ordinazione +
+                ", tavolo=" + tavolo +
                 '}';
     }
 }

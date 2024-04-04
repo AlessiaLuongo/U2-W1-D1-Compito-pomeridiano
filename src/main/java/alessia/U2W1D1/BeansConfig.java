@@ -87,6 +87,7 @@ public class BeansConfig {
         return new Drink("Wine", 607, 7.49);
     }
 
+
     @Bean
     public List<Pizza> pizzas(Pizza pizza){
        List<Pizza> pizzas = new ArrayList();
